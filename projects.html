@@ -5,48 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects - Dean</title>
     <link rel="stylesheet" href="assets/css/combined-styles.css">
+    <style>
+        /* Toggle Switch CSS */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+    <script>
+        // On page load, check the saved theme preference
+        window.onload = function() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('themeToggle').checked = true;
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('themeToggle').checked = false;
+            }
+        }
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-400">
     <!-- Navigation Menu -->
-    <nav class="bg-blue-600 text-white p-4 shadow-md">
-        <ul class="flex justify-center space-x-4">
+    <nav class="bg-blue-600 text-white p-4 shadow-md dark:bg-gray-800">
+        <ul class="flex justify-center space-x-4 items-center">
             <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
             <li><a href="about.html" class="hover:text-gray-200">About</a></li>
             <li><a href="projects.html" class="hover:text-gray-200">Projects</a></li>
             <li><a href="resume.html" class="hover:text-gray-200">Resume</a></li>
             <li><a href="contact.html" class="hover:text-gray-200">Contact</a></li>
+            <li>
+                <!-- Toggle Switch -->
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle" onclick="toggleDarkMode()">
+                    <span class="slider"></span>
+                </label>
+            </li>
         </ul>
     </nav>
 
     <!-- Projects Section -->
     <section id="projects" class="container mx-auto p-8">
         <header class="mb-8 text-center">
-            <h1 class="text-4xl font-bold text-blue-600">My Projects</h1>
+            <h1 class="text-4xl font-bold text-blue-600 dark:text-blue-400">My Projects</h1>
         </header>
-        <article class="project bg-white p-6 mb-8 shadow-md rounded-lg">
-            <h2 class="text-2xl font-semibold mb-4">Project Title 1</h2>
+        <article class="project bg-white p-6 mb-8 shadow-md rounded-lg dark:bg-gray-800">
+            <h2 class="text-2xl font-semibold mb-4 dark:text-gray-300">Project Title 1</h2>
             <img src="assets/images/project1.jpg" alt="Project 1 Screenshot" class="w-full h-auto mb-4 rounded">
-            <p class="text-xl mb-4">Project Description 1</p>
+            <p class="text-xl mb-4 dark:text-gray-300">Project Description 1</p>
             <div class="flex justify-between">
-                <a href="https://github.com/yourusername/project1" target="_blank" class="text-blue-600 hover:text-blue-800">View on GitHub</a>
-                <a href="https://yourproject1demo.com" target="_blank" class="text-blue-600 hover:text-blue-800">Live Demo</a>
+                <a href="https://github.com/yourusername/project1" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500">View on GitHub</a>
+                <a href="https://yourproject1demo.com" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500">Live Demo</a>
             </div>
         </article>
-        <article class="project bg-white p-6 mb-8 shadow-md rounded-lg">
-            <h2 class="text-2xl font-semibold mb-4">Project Title 2</h2>
+        <article class="project bg-white p-6 mb-8 shadow-md rounded-lg dark:bg-gray-800">
+            <h2 class="text-2xl font-semibold mb-4 dark:text-gray-300">Project Title 2</h2>
             <img src="assets/images/project2.jpg" alt="Project 2 Screenshot" class="w-full h-auto mb-4 rounded">
-            <p class="text-xl mb-4">Project Description 2</p>
+            <p class="text-xl mb-4 dark:text-gray-300">Project Description 2</p>
             <div class="flex justify-between">
-                <a href="https://github.com/yourusername/project2" target="_blank" class="text-blue-600 hover:text-blue-800">View on GitHub</a>
-                <a href="https://yourproject2demo.com" target="_blank" class="text-blue-600 hover:text-blue-800">Live Demo</a>
+                <a href="https://github.com/yourusername/project2" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500">View on GitHub</a>
+                <a href="https://yourproject2demo.com" target="_blank" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500">Live Demo</a>
             </div>
         </article>
         <!-- Add more project articles as needed -->
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-200 text-center p-4">
-        <p class="text-gray-800">&copy; Class of 2027 Dean Barrow</p>
+    <footer class="bg-gray-200 text-center p-4 dark:bg-gray-700 dark:text-gray-300">
+        <p class="text-gray-800 dark:text-gray-300">&copy; Class of 2027 Dean Barrow</p>
     </footer>
 
     <script src="assets/js/main.js"></script>

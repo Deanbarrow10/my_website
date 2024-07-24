@@ -5,16 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
     <link rel="stylesheet" href="assets/css/combined-styles.css">
-</head>
-<body class="bg-gray-100 text-gray-800">
+    <style>
+        /* Toggle Switch CSS */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
 
-    <nav class="bg-white shadow-md p-4">
-        <ul class="flex space-x-4">
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+    <script>
+        // On page load, check the saved theme preference
+        window.onload = function() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.getElementById('themeToggle').checked = true;
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('themeToggle').checked = false;
+            }
+        }
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-400">
+
+    <nav class="bg-white shadow-md p-4 dark:bg-gray-800">
+        <ul class="flex space-x-4 items-center">
             <li><a href="index.html" class="text-blue-600 hover:text-blue-800">Home</a></li>
             <li><a href="about.html" class="text-blue-600 hover:text-blue-800">About</a></li>
             <li><a href="projects.html" class="text-blue-600 hover:text-blue-800">Projects</a></li>
             <li><a href="resume.html" class="text-blue-600 hover:text-blue-800">Resume</a></li>
             <li><a href="contact.html" class="text-blue-600 hover:text-blue-800">Contact</a></li>
+            <li>
+                <!-- Toggle Switch -->
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle" onclick="toggleDarkMode()">
+                    <span class="slider"></span>
+                </label>
+            </li>
         </ul>
     </nav>
     
@@ -54,8 +130,8 @@
         </section>
     </main>
     
-    <footer class="bg-gray-200 text-center p-4">
-        <p class="text-gray-800">&copy; 2024 My Personal Website</p>
+    <footer class="bg-gray-200 text-center p-4 dark:bg-gray-700">
+        <p class="text-gray-800 dark:text-gray-300">&copy; 2024 My Personal Website</p>
     </footer>
 </body>
 </html>
